@@ -1,0 +1,21 @@
+{% from 'from_layout.html' import displayField %}
+{% extends "layout.html" %}
+
+{% block title %}Registration{% endblock %}
+{% block content %}
+    <h1>Get started</h1>
+
+    <form action="{{ url_for('register') }}", method="POST">
+
+        <div>
+            {{ displayField(form.username, 'Username') }}
+            {{ displayField(form.password, 'Password') }}
+            {{ displayField(form.conf_password, 'Retype Password') }}
+        </div>
+        <div>
+            {{ form.submit_button }}
+        </div>
+        {{ form.csrf_token }}
+    </form>
+
+{% endblock %}

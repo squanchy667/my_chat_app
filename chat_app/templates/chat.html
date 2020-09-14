@@ -1,0 +1,27 @@
+{% from 'from_layout.html' import displayField %}
+{% extends "layout.html" %}
+
+{% block title %}Chat{% endblock %}
+{% block content %}
+    <h1>Send A Message</h1>
+
+    <form action="{{ url_for('chat') }}", method="POST">
+
+        <div>
+            {{ displayField(form.subject, 'Subject') }}
+            {{ displayField(form.content, 'Content') }}
+        </div>
+        <div>
+            {{ form.submit }}
+        </div>
+        <div>
+            {{ displayField(form.receiver, 'Receiver') }}
+        </div>
+        <div>
+            <a class="btn btn-secondary btn-sm m-1" href="{{ url_for('inbox_sent')}}">Sent messages</a>
+            <a class="btn btn-secondary btn-sm m-1" href="{{ url_for('inbox_receiver')}}">Received messages</a>
+        </div>
+        {{ form.csrf_token }}
+    </form>
+
+{% endblock %}

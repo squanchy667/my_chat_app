@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    <title>Sent Messages</title>
+</head>
+<body>
+    {% for post in po %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <h2 class="mr-2">From: {{ current_user.username }}</h2>
+              <small class="text-muted">On {{ post.date_created }}</small>
+              <small class="text-muted">, Post ID: {{ post.id }}</small>
+            </div>
+            <h3 class="article-content">Subject: {{ post.subject }} </h3>
+            <h3 class="article-content">Content: {{ post.content }}</h3>
+              <h3 class="article-content">Receiver: {{ post.receiver }}</h3>
+              <a class="btn btn-secondary btn-sm m-1" href="{{ url_for('delete',msg_id=post.id)}}">Delete</a>
+          </div>
+        </article>
+    {% endfor %}
+</body>
+</html>
